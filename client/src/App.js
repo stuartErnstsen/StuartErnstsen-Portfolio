@@ -1,10 +1,10 @@
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      HELLOOOOOOOOo
-    </div>
+    <header>
+      <h1>Stuart Ernstsen / Web Developer</h1>
+    </header>
   );
 }
 

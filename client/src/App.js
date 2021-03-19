@@ -1,10 +1,12 @@
 import './App.scss';
+import { useContext } from 'react';
+import AppContext from './Context/appContext';
+import Header from './Components/Header/Header';
 
 function App() {
+  const { test } = useContext(AppContext)
   return (
-    <header>
-      <h1>Stuart Ernstsen / Web Developer</h1>
-    </header>
+    <Header />
   );
 }
 

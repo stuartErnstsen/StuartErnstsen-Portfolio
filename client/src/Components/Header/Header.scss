@@ -1,0 +1,93 @@
+header {
+    display: fixed;
+    left: 0px;
+    top: 0px;
+    height: 100vh;
+    width: 100vw;
+    box-shadow: 0 0 10px black;
+    
+    .header-inner-container {
+        display: flex;
+        height: 100%;
+        .header-left, .header-right {
+            width: 50%;
+        }
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            .header-title {
+                position: relative;
+                text-align: left;
+                font-family: 'Rock Salt', cursive;
+                color: rgb(247, 68, 68);
+                font-size: 2rem;
+                border-bottom-right-radius: 20px;
+                margin-bottom: 5px;
+                padding-left: 20px;
+                background-color: rgb(14, 28, 41);
+                cursor: pointer;
+                span {
+                    height: 3rem;
+                    line-height: 3rem;
+                }
+                .title-end {
+                    font-family: 'Quicksand', sans-serif;
+                    font-weight: 300;
+                    color: white;
+                }
+                &::before {
+                    content: '';
+                    position: absolute;
+                    background-color: rgb(14, 28, 41);
+                    background-color: transparent;
+                    height: 40px;
+                    width: 40px;
+                    right: -40px;
+                    top: 0px;
+                    box-shadow: -20px 0px 0px rgb(14, 28, 41);
+                    border-top-left-radius: 20px;
+                }
+            }
+            .header-info {
+                position: relative;
+                flex-grow: 1;
+                display: flex;
+                background-color: rgb(14, 28, 41);
+                border-top-right-radius: 20px;
+                // border-bottom-right-radius: 20px;
+                .header-info-child {
+                    width: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    h4 {
+                        height: 30px;
+                        line-height: 30px;
+                        font-size: 1.5rem;
+                        margin-bottom: 10px;
+                    }
+                }
+                .header-info-keys {
+                    
+                    align-items: flex-end;
+                    font-family: 'Rock Salt', cursive;
+                    color: rgb(247, 68, 68);
+                }
+                .header-info-values {
+                    align-items: flex-start;
+                    padding-left: 5px;
+                    h4 {
+                        font-weight: 300;
+                    }
+
+                }
+                
+            }
+        }
+        .header-right {
+            background-color: #fff;
+        }
+        
+    }
+    
+}

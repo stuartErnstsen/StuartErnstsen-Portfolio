@@ -1,6 +1,5 @@
 const code = `header {
     display: fixed;
-    left: 0px;
     top: 0px;
     height: 100vh;
     width: 100vw;
@@ -18,7 +17,7 @@ const code = `header {
                 align-items: center;
                 justify-content: flex-end;
             }
-            .header-info {
+            .header-content {
                 height: calc(100vh - 80px);
                 display: flex;
                 flex-direction: column;
@@ -29,7 +28,6 @@ const code = `header {
             max-height: 100vh;
             background-color: #333;
             .title-start {
-                position: relative;
                 margin-right: 5px;
                 color: #fc6a46; 
                 font-weight: 300;
@@ -47,10 +45,9 @@ const code = `header {
                 margin-left: 5px;
                 font-family: 'Rock Salt', cursive;                
             }
-            .header-info {
+            .header-content {
                 padding-left: 20px;
                 font-size: .9rem;
-                font-weight: 700;
             }
         }
     } 

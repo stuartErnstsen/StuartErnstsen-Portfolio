@@ -6,7 +6,9 @@ import Header from './Components/Header/Header';
 function App() {
   const { test } = useContext(AppContext)
   return (
-    <Header />
+    <>
+      <Header />
+    </>
   );
 }
 

@@ -1,4 +1,4 @@
-import { useState, useRef, useContext, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import AppContext from '../../Context/appContext';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -7,7 +7,17 @@ import code from './code';
 import './Header.scss';
 
 const Header = props => {
-    const { headerRightView, setHeaderRightView } = useContext(AppContext)
+    const { headerRightView, setHeaderRightView, mobileView } = useContext(AppContext)
+    const [justLoaded, setJustLoaded] = useState(true)
+
+    //This useEffect ensure both left and right slide in on load then alternate sliding from that point forward when a section is selected.
+    useEffect(() => {
+        if (headerRightView) {
+            if (justLoaded) {
+                setJustLoaded(false)
+            }
+        }
+    }, [headerRightView, justLoaded])
 
     return (
         <header>
@@ -49,7 +59,7 @@ const Header = props => {
                     </div>
                     <aside
                         className={`header-content ${headerRightView ? '' : 'collapse-header-child-content'}`}>
-                        <pre className={`${headerRightView ? 'slide-in-code' : ''}`}>
+                        <pre className={`${headerRightView || (!mobileView && justLoaded) ? 'slide-in-code' : ''}`}>
                             {code}
                         </pre>
                     </aside>

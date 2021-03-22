@@ -1,3 +1,32 @@
+@mixin header-tablet {
+    @media ( min-width: 800px ) {
+        .header-inner-container {
+            flex-direction: row;
+            .header-child {
+                min-width: 50%;
+                height: 100%;
+                box-shadow: none;
+                .header-title-container {
+                    .arrow-container {
+                        display: none;
+                    }
+                }
+                .header-content {
+                    height: 100%;
+                    padding: 0px 0px;
+                    .landing-image-container {
+                        height: 80%;
+                    }
+                }
+                // &:hover {
+                //     box-shadow: 0 0 20px black;
+                // }
+            }
+            
+        }
+    }
+}
+
 header {
     display: fixed;
     left: 0px;
@@ -17,9 +46,7 @@ header {
             display: flex;
             flex-direction: column;
             transition: all .3s;
-            &:hover {
-                cursor: crosshair;
-            }
+            
             .header-title-container {
                 min-height: 60px;
                 width: 100%;
@@ -28,6 +55,9 @@ header {
                 justify-content: flex-end;
                 h1 {
                     font-size: 1.5rem;
+                }
+                &:hover {
+                cursor: pointer;
                 }
             }
             .header-content {
@@ -103,6 +133,7 @@ header {
             }
             .title-end {
                 position: relative;
+                font-size: 1.3rem;
                 margin-left: 5px;
                 font-family: 'Rock Salt', cursive;                
             }
@@ -120,6 +151,22 @@ header {
                     padding-bottom: 10px;
                     width: 100%;
                     transition: all 1s;
+                    animation: 1s ease-out 0s 1 slideInFromRight;
+                    @media ( min-height: 700px ) {
+                                font-size: .7rem !important;
+                    }
+                    @media ( min-height: 800px ) {  
+                        font-size: .8rem !important;
+                    }
+                    @media ( min-height: 950px ) {  
+                        font-size: 1rem !important;
+                    }
+                    @media ( min-height: 1200px ) {  
+                        font-size: 1.2rem !important;
+                    }
+                    @media ( min-height: 1500px ) {  
+                        font-size: 1.7rem !important;
+                    }
                 }
                 .slide-in-code {
                     transform: translateX(0%);
@@ -139,11 +186,21 @@ header {
         }
         
     } 
+    @include header-tablet;
 }
 
 @keyframes slideInFromLeft {
     0% {
         transform: translateX(100%)
+    }
+    100% {
+        transform: translateX(0%)
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(-100%)
     }
     100% {
         transform: translateX(0%)
@@ -190,6 +247,8 @@ header {
         opacity: 1;
     }
 }
+
+
 
 
 

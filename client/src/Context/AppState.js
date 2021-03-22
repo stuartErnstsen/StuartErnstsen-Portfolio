@@ -1,19 +1,24 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import AppContext from './appContext';
 
 const AppState = props => {
 
-    // const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [headerRightView, setHeaderRightView] = useState(false);
     const [headerLeftView, setHeaderLeftView] = useState(false);
-    // const [mobileView, setMobileView] = useState(false);
+    const [mobileView, setMobileView] = useState(windowWidth < 800);
 
-    // useEffect(() => {
-    //     function handleResize() {
-    //         setWindowWidth(window.innerWidth)
-    //     }
-    //     return () => window.removeEventListener('resize', handleResize)
-    // })
+    useEffect(() => {
+        function handleResize() {
+            setWindowWidth(window.innerWidth)
+            if (window.innerWidth < 800 && !mobileView) {
+                setMobileView(true)
+            } else if (window.innerWidth > 800 && mobileView) {
+                setMobileView(false)
+            }
+        }
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     return (
         <AppContext.Provider
@@ -21,7 +26,8 @@ const AppState = props => {
                 headerLeftView,
                 setHeaderLeftView,
                 headerRightView,
-                setHeaderRightView
+                setHeaderRightView,
+                mobileView
             }}>
             {props.children}
         </AppContext.Provider>

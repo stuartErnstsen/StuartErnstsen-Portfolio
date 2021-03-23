@@ -11,9 +11,9 @@ const AppState = props => {
     useEffect(() => {
         function handleResize() {
             setWindowWidth(window.innerWidth)
-            if (window.innerWidth < 800 && !mobileView) {
+            if (window.innerWidth < 800) {
                 setMobileView(true)
-            } else if (window.innerWidth > 800 && mobileView) {
+            } else if (window.innerWidth > 800) {
                 setMobileView(false)
             }
         }

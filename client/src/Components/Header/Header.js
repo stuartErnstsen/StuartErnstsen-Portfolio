@@ -7,17 +7,25 @@ import code from './code';
 import './Header.scss';
 
 const Header = props => {
-    const { headerRightView, setHeaderRightView, mobileView } = useContext(AppContext)
+    const { headerRightView, setHeaderRightView, headerLeftView, setHeaderLeftView, mobileView } = useContext(AppContext)
     const [justLoaded, setJustLoaded] = useState(true)
+
+    const handleToggleLeftView = () => {
+        setHeaderLeftView(true)
+        setHeaderRightView(false)
+    }
+
+    const handleToggleRightView = () => {
+        setHeaderRightView(true)
+        setHeaderLeftView(false)
+    }
 
     //This useEffect ensure both left and right slide in on load then alternate sliding from that point forward when a section is selected.
     useEffect(() => {
-        if (headerRightView) {
-            if (justLoaded) {
-                setJustLoaded(false)
-            }
+        if ((headerRightView || headerLeftView) && justLoaded) {
+            setJustLoaded(false)
         }
-    }, [headerRightView, justLoaded])
+    }, [headerRightView, headerLeftView, justLoaded])
 
     return (
         <header>
@@ -25,7 +33,7 @@ const Header = props => {
                 <section id='header-left' className={`header-child ${headerRightView ? 'collapsed-shadow' : ''}`}>
                     <div
                         className='header-title-container'
-                        onClick={() => setHeaderRightView(false)}>
+                        onClick={() => handleToggleLeftView()}>
                         <h1 className='title-start'>
                             Stuart Ernstsen &lt;
                         </h1>
@@ -38,18 +46,18 @@ const Header = props => {
                         )}
                     </div>
                     <aside className={`header-content ${headerRightView ? 'collapse-header-child-content' : ''}`}>
-                        <div className={`landing-image-container ${!headerRightView ? 'slide-in-landing' : ''}`}>
+                        <div className={`landing-image-container ${justLoaded || headerLeftView ? 'slide-in-landing' : ''}`}>
                             <img id='brain' src={TEMP} alt='brain' />
                         </div>
                     </aside>
                 </section>
-                <section id='header-right' className={`header-child ${!headerRightView ? 'collapsed-shadow' : ''}`}>
+                <section id='header-right' className={`header-child ${headerLeftView || justLoaded ? 'collapsed-shadow' : ''}`}>
 
                     <div
                         className='header-title-container'
-                        onClick={() => setHeaderRightView(true)}>
+                        onClick={() => handleToggleRightView()}>
                         <h1 className='title-end'>&gt; Web Developer</h1>
-                        {!headerRightView && (
+                        {(headerLeftView || justLoaded) && (
                             <div className='up-arrow-container arrow-container' >
                                 <ExpandLessIcon />
                                 <ExpandLessIcon />
@@ -58,8 +66,8 @@ const Header = props => {
                         )}
                     </div>
                     <aside
-                        className={`header-content ${headerRightView ? '' : 'collapse-header-child-content'}`}>
-                        <pre className={`${headerRightView || (!mobileView && justLoaded) ? 'slide-in-code' : ''}`}>
+                        className={`header-content ${headerLeftView || justLoaded ? 'collapse-header-child-content' : ''}`}>
+                        <pre className={`${justLoaded || headerRightView ? 'slide-in-code' : ''}`}>
                             {code}
                         </pre>
                     </aside>

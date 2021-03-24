@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import AppContext from '../../Context/appContext';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ReplyAllIcon from '@material-ui/icons/ReplyAll';
 import TEMP from '../../assets/images/portfolio_landing_planet1.png';
 import code from './code';
 import './Header.scss';
@@ -20,6 +21,12 @@ const Header = props => {
         setHeaderLeftView(false)
     }
 
+    const handleGoBack = () => {
+        setHeaderLeftView(false);
+        setHeaderRightView(false);
+        setJustLoaded(true);
+    }
+
     //This useEffect ensure both left and right slide in on load then alternate sliding from that point forward when a section is selected.
     useEffect(() => {
         if ((headerRightView || headerLeftView) && justLoaded) {
@@ -30,13 +37,25 @@ const Header = props => {
     return (
         <header>
             <div className='header-inner-container'>
-                <section id='header-left' className={`header-child ${headerRightView ? 'collapsed-shadow' : ''}`}>
+                <section
+                    id='header-left'
+                    className={`header-child ${headerRightView ? 'collapsed-shadow' : ''} ${headerRightView ? 'shrink-header-child' : !justLoaded && 'expand-header-child'}`}
+                    onClick={mobileView ? null : headerRightView ? () => handleGoBack() : () => handleToggleLeftView()}>
                     <div
                         className='header-title-container'
                         onClick={() => handleToggleLeftView()}>
-                        <h1 className='title-start'>
-                            Stuart Ernstsen &lt;
-                        </h1>
+                        {(!mobileView && headerRightView)
+                            ? (
+                                <h1 className='title-back'>
+                                    GO BACK <span><ReplyAllIcon /></span>
+                                </h1>
+                            ) : (
+                                <h1 className='title-start'>
+                                    Stuart Ernstsen &lt;
+                                </h1>
+                            )
+                        }
+
                         {headerRightView && (
                             <div className='down-arrow-container arrow-container' >
                                 <ExpandMoreIcon />
@@ -51,12 +70,25 @@ const Header = props => {
                         </div>
                     </aside>
                 </section>
-                <section id='header-right' className={`header-child ${headerLeftView || justLoaded ? 'collapsed-shadow' : ''}`}>
+                <section
+                    id='header-right'
+                    className={`header-child ${headerLeftView || justLoaded ? 'collapsed-shadow' : ''} ${headerLeftView ? 'shrink-header-child' : !justLoaded && 'expand-header-child'}`}
+                    onClick={mobileView ? null : headerLeftView ? () => handleGoBack() : () => handleToggleRightView()}>
 
                     <div
                         className='header-title-container'
                         onClick={() => handleToggleRightView()}>
-                        <h1 className='title-end'>&gt; Web Developer</h1>
+
+                        {(!mobileView && headerLeftView)
+                            ? (
+                                <h1 className='title-back'>
+                                    <span><ReplyAllIcon /></span> GO BACK
+                                </h1>
+                            ) : (
+                                <h1 className='title-end'>&gt; Web Developer
+                                </h1>
+                            )
+                        }
                         {(headerLeftView || justLoaded) && (
                             <div className='up-arrow-container arrow-container' >
                                 <ExpandLessIcon />

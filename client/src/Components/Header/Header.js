@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import AppContext from '../../Context/appContext';
+import AppContext from '../../Context/AppContext';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ReplyAllIcon from '@material-ui/icons/ReplyAll';
@@ -8,8 +8,15 @@ import code from './code';
 import './Header.scss';
 
 const Header = props => {
-    const { headerRightView, setHeaderRightView, headerLeftView, setHeaderLeftView, mobileView } = useContext(AppContext)
-    const [justLoaded, setJustLoaded] = useState(true)
+    const {
+        headerRightView,
+        setHeaderRightView,
+        headerLeftView,
+        setHeaderLeftView,
+        mobileView,
+        justLoaded,
+        setJustLoaded } = useContext(AppContext)
+
 
     const handleToggleLeftView = () => {
         setHeaderLeftView(true)
@@ -50,7 +57,7 @@ const Header = props => {
                                     GO BACK <span><ReplyAllIcon /></span>
                                 </h1>
                             ) : (
-                                <h1 className='title-start'>
+                                <h1 className='title-start grow-in-title'>
                                     Stuart Ernstsen &lt;
                                 </h1>
                             )
@@ -85,7 +92,7 @@ const Header = props => {
                                     <span><ReplyAllIcon /></span> GO BACK
                                 </h1>
                             ) : (
-                                <h1 className='title-end'>&gt; Web Developer
+                                <h1 className='title-end grow-in-title'>&gt; Web Developer
                                 </h1>
                             )
                         }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import AppContext from './appContext';
+import AppContext from './AppContext';
 
 const AppState = props => {
 
@@ -7,6 +7,7 @@ const AppState = props => {
     const [headerRightView, setHeaderRightView] = useState(false);
     const [headerLeftView, setHeaderLeftView] = useState(false);
     const [mobileView, setMobileView] = useState(windowWidth < 800);
+    const [justLoaded, setJustLoaded] = useState(true)
 
     useEffect(() => {
         function handleResize() {
@@ -28,7 +29,9 @@ const AppState = props => {
                 setHeaderLeftView,
                 headerRightView,
                 setHeaderRightView,
-                mobileView
+                mobileView,
+                justLoaded,
+                setJustLoaded
             }}>
             {props.children}
         </AppContext.Provider>

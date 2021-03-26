@@ -1,0 +1,18 @@
+
+.main-showcase {
+    top: 0px;
+    left: 100vw;
+    display: block;
+    // right: 0px;
+    // transform: translateX(100vw);
+    // transition: transform .5s;
+}
+
+.slide-in-right {
+    transform: translateX(-100%);
+}
+
+// .slide-out-right {
+//     // right: -150%;
+//     transform: translateX(100%);
+// }

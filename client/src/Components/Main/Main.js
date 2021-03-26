@@ -6,19 +6,19 @@ import Showcase from './Showcase/Showcase';
 
 const Main = props => {
     const { headerRightView, headerLeftView, justLoaded } = useContext(AppContext);
-    const [toggleSlideInRight, setToggleSlideInRight] = useState(false);
+    const [toggleSlideOutRight, setToggleSlideOutRight] = useState(false);
 
     useEffect(() => {
         if (headerRightView) {
-            setToggleSlideInRight(true)
+            setToggleSlideOutRight(true)
         }
         else if (headerLeftView) {
-            setToggleSlideInRight(false)
+            setToggleSlideOutRight(false)
         }
     }, [headerLeftView, headerRightView])
 
     return (
-        <main className={`${headerLeftView ? 'main-info slide-in-left' : headerRightView ? 'main-showcase slide-in-right' : ''}`}>
+        <main className={`${headerLeftView ? 'main-info slide-in-left' : headerRightView ? 'slide-in-right' : ''} ${(headerRightView || toggleSlideOutRight) && 'main-showcase'}`}>
             {headerLeftView && <Info />}
             {headerRightView && <Showcase />}
         </main>
